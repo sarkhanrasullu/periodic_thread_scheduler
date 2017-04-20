@@ -9,4 +9,4 @@ I created a repository for this purpose.The client only needs to add annotation 
 
 <b>@PeriodicThread(delayDay = 1, atHour = 3, atMinute = 0, atSecond = 0)</b>
 
-App will submit this runnable object to executor service periodically
+App will submit this runnable object to executor service periodically at specified time
