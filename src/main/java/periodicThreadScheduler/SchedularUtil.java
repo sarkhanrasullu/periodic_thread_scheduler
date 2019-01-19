@@ -35,4 +35,8 @@ public class SchedularUtil {
         executorService.schedule(r, wait, TimeUnit.MILLISECONDS);
         return specificTime.getTime();
     }
+
+    public static Date schedule(int hour, int minute, int second, int delayDay, Runnable r) {
+        return schedule(null, hour, minute, second, delayDay, r);
+    }
 }
