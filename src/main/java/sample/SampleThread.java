@@ -7,7 +7,7 @@ import periodicThreadScheduler.annotations.PeriodicThread;
  *
  * @author Sarkhan Rasullu
  */
-@PeriodicThread(delayDay = 1, atHour = 3, atMinute = 0, atSecond = 0)
+@PeriodicThread(delayDay = 0, atHour = 21, atMinute = 46, atSecond = 30)
 public class SampleThread implements Runnable {
 
     private static final Logger LOG = Logger.getLogger(SampleThread.class.getName());
@@ -18,6 +18,7 @@ public class SampleThread implements Runnable {
      */
     @Override
     public void run() {
+        System.out.println("sample thread is started");
         //do something
     }
 

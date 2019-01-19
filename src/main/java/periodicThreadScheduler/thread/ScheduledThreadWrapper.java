@@ -1,9 +1,9 @@
 package periodicThreadScheduler.thread;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
+import periodicThreadScheduler.SchedularUtil;
 import periodicThreadScheduler.annotations.PeriodicThread;
 
 /**
@@ -14,7 +14,7 @@ import periodicThreadScheduler.annotations.PeriodicThread;
 public class ScheduledThreadWrapper {
 
     private static final Logger LOG = Logger.getLogger(ScheduledThreadWrapper.class.getName());
-    private boolean started = false;
+//    private boolean started = false;
     private final Runnable r;
     private final ScheduledExecutorService executorService;
 
@@ -29,31 +29,21 @@ public class ScheduledThreadWrapper {
         PeriodicThread p = r.getClass().getAnnotationsByType(PeriodicThread.class)[0];
 
         debug(p.delayDay() + "," + p.atHour() + "," + p.atMinute() + "," + p.atSecond());
+        Date scheduledDate = SchedularUtil.schedule(executorService, p.atHour(), p.atMinute(), p.atSecond(), p.delayDay(), r);
 
-        Calendar specificTime = Calendar.getInstance();
-        specificTime.set(Calendar.DAY_OF_MONTH, specificTime.get(Calendar.DAY_OF_MONTH) + p.delayDay());
-        specificTime.set(Calendar.HOUR_OF_DAY, p.atHour());
-        specificTime.set(Calendar.MINUTE, p.atMinute());
-        specificTime.set(Calendar.SECOND, p.atSecond());
-
-        Calendar now = Calendar.getInstance();
-
-        long wait = specificTime.getTimeInMillis() - now.getTimeInMillis();
-        executorService.schedule(r, wait, TimeUnit.MILLISECONDS);
-
-        this.started = true;
-        debug(" scheduled for:" + specificTime.getTime());
+//        this.started = true;
+        debug(" scheduled for:" + scheduledDate);
     }
 
     public final void startSchedule() {
         debug(" run method is invoked");
-        if (started) {
-            try {
-                r.run();
-            } catch (Exception ex) {
-                LOG.error(null, ex);
-            }
-        }
+//        if (started) {
+//            try {
+//                r.run();
+//            } catch (Exception ex) {
+//                LOG.error(null, ex);
+//            }
+//        }
         schedule();
     }
 
