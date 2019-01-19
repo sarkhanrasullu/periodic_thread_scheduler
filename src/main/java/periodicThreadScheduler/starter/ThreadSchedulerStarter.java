@@ -16,7 +16,7 @@ public class ThreadSchedulerStarter {
 
     private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10);
 
-    public static void initializeAllThreads(String threadsLocation) throws Exception {
+    public static void initializeAllThreads() throws Exception {
         System.out.println("initilazie");
         Reflections reflections = new Reflections(".*");
 
